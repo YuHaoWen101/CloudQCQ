@@ -33,8 +33,9 @@ class Activitylogin : Activity(), Contract.View {
     override fun loginSuccess(iuser: user?) {
 
     this.startActivity<PlayerlistActivity>{
+
         putExtra("iuser",iuser!!.bindings[0].id)
-        putExtra("userid",iuser.bindings[0].id)
+        putExtra("userid",iuser.bindings[0].id.toString())
 
     }
 }

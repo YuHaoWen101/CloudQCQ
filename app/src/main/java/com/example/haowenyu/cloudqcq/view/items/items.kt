@@ -70,8 +70,8 @@ class playerlists(val text: String?, val num: String?) : Item {
 }
 
 class playlist_info(val text: String?, val count: String?, val image: String?, val id: String?) : Item {
-    override val controller: ItemController
-        get() = controller
+    override val controller: ItemController =Companion
+
 
     companion object : ItemController {
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: Item) {

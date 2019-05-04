@@ -19,7 +19,7 @@ data class Playlist(
     val creator: Creator,
     val description: String,
     val highQuality: Boolean,
-    val id: Int,
+    val id: String,
     val name: String,
     val newImported: Boolean,
     val ordered: Boolean,
