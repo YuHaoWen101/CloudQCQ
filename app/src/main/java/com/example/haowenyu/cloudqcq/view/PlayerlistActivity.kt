@@ -2,15 +2,13 @@ package com.example.haowenyu.cloudqcq.view
 
 import android.app.Activity
 import android.os.Bundle
-import android.os.PersistableBundle
 
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import cn.edu.twt.retrox.recyclerviewdsl.Item
 import cn.edu.twt.retrox.recyclerviewdsl.ItemAdapter
 import cn.edu.twt.retrox.recyclerviewdsl.ItemManager
 import com.example.haowenyu.cloudqcq.Contract
-import com.example.haowenyu.cloudqcq.LoginPresenter
+import com.example.haowenyu.cloudqcq.Presenter
 import com.example.haowenyu.cloudqcq.R
 import com.example.haowenyu.cloudqcq.datamodel.userplayerlist
 import com.example.haowenyu.cloudqcq.view.items.playerlists
@@ -21,7 +19,7 @@ class PlayerlistActivity: Activity(),Contract.PlayerlistView{
     private var listlist: MutableList<Item> = arrayListOf()
     private lateinit var itemManager: ItemManager
     private lateinit var itemAdapter: ItemAdapter
-    var presenter:LoginPresenter = LoginPresenter()
+    val presenter:Presenter = Presenter()
 
 
 

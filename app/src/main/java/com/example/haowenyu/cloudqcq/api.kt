@@ -1,5 +1,6 @@
 package com.example.haowenyu.cloudqcq
 
+import com.example.haowenyu.cloudqcq.datamodel.playlist_detail
 import com.example.haowenyu.cloudqcq.datamodel.user
 import com.example.haowenyu.cloudqcq.datamodel.userplayerlist
 import io.reactivex.Observable
@@ -13,4 +14,9 @@ interface Api{
 
     @GET("/user/playlist")
     fun getPlaylist(@Query("uid")id:String?):Call<userplayerlist>
+
+    @GET("/playlist/detail")
+    fun getListDetail(@Query("id") id: String?): Call<playlist_detail>
+
+
 }

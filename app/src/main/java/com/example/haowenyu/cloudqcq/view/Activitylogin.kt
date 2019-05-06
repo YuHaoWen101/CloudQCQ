@@ -9,7 +9,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import com.example.haowenyu.cloudqcq.Contract
-import com.example.haowenyu.cloudqcq.LoginPresenter
+import com.example.haowenyu.cloudqcq.Presenter
 import com.example.haowenyu.cloudqcq.R
 import com.example.haowenyu.cloudqcq.datamodel.user
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -22,7 +22,7 @@ class Activitylogin : Activity(), Contract.View {
     lateinit var accountl:LinearLayout
     lateinit var passwordl:LinearLayout
     lateinit var button: Button
-    var mpresenter:LoginPresenter = LoginPresenter()
+    var mpresenter:Presenter = Presenter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

@@ -1,5 +1,6 @@
 package com.example.haowenyu.cloudqcq
 
+import com.example.haowenyu.cloudqcq.datamodel.playlist_detail
 import com.example.haowenyu.cloudqcq.datamodel.user
 import com.example.haowenyu.cloudqcq.datamodel.userplayerlist
 import com.google.gson.GsonBuilder
@@ -31,7 +32,7 @@ class  Retro{
 
     private var retrofit: Retrofit = Retrofit.Builder()
         .client(client)
-        .baseUrl("http://172.23.170.89:3000")
+        .baseUrl("http://172.23.23.228:3000")
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().serializeNulls().setLenient().create()))
         .build()
@@ -43,5 +44,9 @@ class  Retro{
     }
     fun getplaylist(id:String):Call<userplayerlist>{
         return httpInterface.getPlaylist(id)
+    }
+    fun getlistdetail(id:String):Call<playlist_detail>
+    {
+        return httpInterface.getListDetail(id)
     }
 }

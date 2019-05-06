@@ -1,18 +1,35 @@
 package com.example.haowenyu.cloudqcq
 
 
+import com.example.haowenyu.cloudqcq.datamodel.playlist_detail
 import com.example.haowenyu.cloudqcq.datamodel.user
 import com.example.haowenyu.cloudqcq.datamodel.userplayerlist
 import com.example.haowenyu.cloudqcq.view.Activitylogin
+import com.example.haowenyu.cloudqcq.view.PlayListDetail
 import com.example.haowenyu.cloudqcq.view.PlayerlistActivity
-import com.example.haowenyu.cloudqcq.view.items.playerlists
 import kotlinx.coroutines.*
 
 
 import retrofit2.Call
 
 
-class LoginPresenter: Contract.LoginPresenter {
+class Presenter: Contract.Presenter {
+    override fun getlistdetail(id: String, playlistDetail1: PlayListDetail) {
+        val playListDetail:Call<playlist_detail> = Retro.retro.getlistdetail(id)
+        launch {
+            val detail = playListDetail.execute().body()
+            launch {
+                if (detail!=null)
+                {
+                    if (detail.code==400){playlistDetail1.onerror("参数错误")}
+                    playlistDetail1.getplaydetail(detail)
+                }
+            }
+        }
+    }
+
+
+
     override fun getplaylist(id: String, playerlistActivity:PlayerlistActivity ) {
         val playlist:Call<userplayerlist> = Retro.retro.getplaylist(id)
         launch {
