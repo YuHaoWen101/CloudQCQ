@@ -22,7 +22,7 @@ class Presenter: Contract.Presenter {
                 if (detail!=null)
                 {
                     if (detail.code==400){playlistDetail1.onerror("参数错误")}
-                    playlistDetail1.getplaydetail(detail)
+                    else playlistDetail1.getplaydetail(detail)
                 }
             }
         }

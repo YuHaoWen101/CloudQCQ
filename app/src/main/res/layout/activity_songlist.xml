@@ -11,7 +11,19 @@
             android:layout_height="0dp"
             android:layout_weight="4"
             android:orientation="horizontal">
-          </LinearLayout>
+        <android.support.v4.widget.SwipeRefreshLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/base_swiperefresh"
+                android:scrollbars="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/songlist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
 
     <LinearLayout
             android:layout_width="match_parent"

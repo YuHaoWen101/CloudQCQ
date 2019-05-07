@@ -14,6 +14,8 @@ import com.example.haowenyu.cloudqcq.datamodel.userplayerlist
 import com.example.haowenyu.cloudqcq.view.items.playerlists
 import com.example.haowenyu.cloudqcq.view.items.playlist_info
 import kotlinx.android.synthetic.main.activity_playerlist.*
+import kotlinx.coroutines.android.UI
+import kotlinx.coroutines.launch
 
 class PlayerlistActivity: Activity(),Contract.PlayerlistView{
     private var listlist: MutableList<Item> = arrayListOf()
@@ -36,6 +38,9 @@ class PlayerlistActivity: Activity(),Contract.PlayerlistView{
             val item = playlist_info(it.name,it.trackCount.toString(),it.coverImgUrl,it.id)
             listlist.add(item)
         }
+        launch(UI) {
+            init()
+        }
 
 
     }
@@ -51,12 +56,16 @@ class PlayerlistActivity: Activity(),Contract.PlayerlistView{
 
         val id = "568596482"//intent.getStringExtra("userid")
         presenter.getplaylist(id,this)
+
+
+    }
+    fun init(){
+
         playlist.apply {
             itemManager = ItemManager(listlist)
             itemAdapter = ItemAdapter(itemManager)
             adapter = itemAdapter
             layoutManager = LinearLayoutManager(this.context)
         }
-
     }
 }

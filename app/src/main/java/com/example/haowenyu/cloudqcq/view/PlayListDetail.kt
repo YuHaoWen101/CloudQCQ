@@ -1,16 +1,19 @@
 package com.example.haowenyu.cloudqcq.view
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import cn.edu.twt.retrox.recyclerviewdsl.Item
 import cn.edu.twt.retrox.recyclerviewdsl.ItemAdapter
 import cn.edu.twt.retrox.recyclerviewdsl.ItemManager
 import com.example.haowenyu.cloudqcq.Contract
 import com.example.haowenyu.cloudqcq.Presenter
+import com.example.haowenyu.cloudqcq.R
 import com.example.haowenyu.cloudqcq.datamodel.playlist_detail
 import com.example.haowenyu.cloudqcq.view.items.Song_detai
+import kotlinx.android.synthetic.main.activity_songlist.*
+import kotlinx.coroutines.launch
 
 class PlayListDetail:Activity(),Contract.Playlist_detail{
     val presenter= Presenter()
@@ -20,9 +23,21 @@ class PlayListDetail:Activity(),Contract.Playlist_detail{
     private lateinit var itemAdapter: ItemAdapter
 
     override fun getplaydetail(detail: playlist_detail?) {
-        detail?.privileges?.forEach {
-            list.add(Song_detai(it.al.picUrl,it.al.name,it.ar.name,it.id))//强加al不行
-        }
+
+    for (i in 0 until detail?.playlist?.tracks?.size!!){
+        list.add(Song_detai(
+            detail.playlist.tracks[i].al.picUrl,
+            detail.playlist.tracks[i].al.name,
+            detail.playlist.tracks[i].ar[0].name,
+            detail.playlist.tracks[i].al.id
+
+        ))
+    }
+    launch(kotlinx.coroutines.android.UI) {
+        init()
+    }
+
+
     }
 
     override fun onerror(message: String?) {
@@ -31,6 +46,7 @@ class PlayListDetail:Activity(),Contract.Playlist_detail{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_songlist)
         val b:Bundle? = intent.extras
         if (b?.getString("id") != null){
             id = b.getString("id")
@@ -38,5 +54,13 @@ class PlayListDetail:Activity(),Contract.Playlist_detail{
         }else{Toast.makeText(this,"空的id",Toast.LENGTH_SHORT).show() }
 
 
+    }
+    fun init(){
+        songlist.apply {
+            itemManager = ItemManager(list)
+            itemAdapter = ItemAdapter(itemManager)
+            adapter = itemAdapter
+            layoutManager = LinearLayoutManager(this.context)
+        }
     }
 }

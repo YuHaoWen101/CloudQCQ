@@ -2,9 +2,7 @@ package com.example.haowenyu.cloudqcq.view.items
 
 import org.jetbrains.anko.layoutInflater
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -16,7 +14,6 @@ import cn.edu.twt.retrox.recyclerviewdsl.ItemController
 import com.bumptech.glide.Glide
 import com.example.haowenyu.cloudqcq.R
 import com.example.haowenyu.cloudqcq.view.PlayListDetail
-import com.example.haowenyu.cloudqcq.view.PlayerlistActivity
 
 import kotlinx.android.synthetic.main.recycle_playerlist_common_download.view.*
 import kotlinx.android.synthetic.main.recycle_playerlist_list.view.*
@@ -116,9 +113,14 @@ class playlist_info(val text: String?, val count: String?, val image: String?, v
 }
 
 
-class Song_detai(val song_name: String?, val song_author: String?, val img: String?, val song_id: String) : Item {
-    override val controller: ItemController
-        get() = controller
+class Song_detai(
+    val img: String?,
+    val song_name: String?,
+    val song_author: String?,
+    val song_id: String
+
+) : Item {
+    override val controller: ItemController = Companion
 
     companion object : ItemController {
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: Item) {
@@ -126,6 +128,7 @@ class Song_detai(val song_name: String?, val song_author: String?, val img: Stri
         item as Song_detai
         holder.Song_name.text = item.song_name
         holder.Song_author.text = item.song_author
+        Glide.with(holder.view).load(item.img).into(holder.Status)
         holder.view.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("song_id",item.song_id) //换播放界面
