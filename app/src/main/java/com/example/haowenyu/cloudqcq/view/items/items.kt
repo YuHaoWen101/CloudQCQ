@@ -13,6 +13,7 @@ import cn.edu.twt.retrox.recyclerviewdsl.Item
 import cn.edu.twt.retrox.recyclerviewdsl.ItemController
 import com.bumptech.glide.Glide
 import com.example.haowenyu.cloudqcq.R
+import com.example.haowenyu.cloudqcq.view.Activity_song_play
 import com.example.haowenyu.cloudqcq.view.PlayListDetail
 
 import kotlinx.android.synthetic.main.recycle_playerlist_common_download.view.*
@@ -132,7 +133,8 @@ class Song_detai(
         holder.view.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("song_id",item.song_id) //换播放界面
-            val intent = Intent(holder.view.context,PlayListDetail::class.java)
+            val intent = Intent(holder.view.context,Activity_song_play::class.java)
+            intent.putExtras(bundle)
             holder.view.context.startActivity(intent)
 
             //播放

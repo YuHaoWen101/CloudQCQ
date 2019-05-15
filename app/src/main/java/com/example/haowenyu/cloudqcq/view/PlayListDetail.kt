@@ -21,16 +21,17 @@ class PlayListDetail:Activity(),Contract.Playlist_detail{
     private var list: MutableList<Item> = arrayListOf()
     private lateinit var itemManager: ItemManager
     private lateinit var itemAdapter: ItemAdapter
+    lateinit var mdetail:playlist_detail
 
     override fun getplaydetail(detail: playlist_detail?) {
 
     for (i in 0 until detail?.playlist?.tracks?.size!!){
+        mdetail = detail
         list.add(Song_detai(
             detail.playlist.tracks[i].al.picUrl,
-            detail.playlist.tracks[i].al.name,
+            detail.playlist.tracks[i].name,
             detail.playlist.tracks[i].ar[0].name,
-            detail.playlist.tracks[i].al.id
-
+            detail.privileges[i].id
         ))
     }
     launch(kotlinx.coroutines.android.UI) {
@@ -49,11 +50,9 @@ class PlayListDetail:Activity(),Contract.Playlist_detail{
         setContentView(R.layout.activity_songlist)
         val b:Bundle? = intent.extras
         if (b?.getString("id") != null){
-            id = b.getString("id")
+            id = b.getString("id")!!
             presenter.getlistdetail(id,this)
         }else{Toast.makeText(this,"空的id",Toast.LENGTH_SHORT).show() }
-
-
     }
     fun init(){
         songlist.apply {
@@ -61,6 +60,9 @@ class PlayListDetail:Activity(),Contract.Playlist_detail{
             itemAdapter = ItemAdapter(itemManager)
             adapter = itemAdapter
             layoutManager = LinearLayoutManager(this.context)
+            song_detail_btn.setOnClickListener {
+
+            }
         }
     }
 }

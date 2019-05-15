@@ -27,6 +27,7 @@ class Activitylogin : Activity(), Contract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         initEdit()
+
     }
 
     @ExperimentalCoroutinesApi

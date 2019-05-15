@@ -1,9 +1,11 @@
 package com.example.haowenyu.cloudqcq
 
 
+import com.example.haowenyu.cloudqcq.datamodel.Song
 import com.example.haowenyu.cloudqcq.datamodel.playlist_detail
 import com.example.haowenyu.cloudqcq.datamodel.user
 import com.example.haowenyu.cloudqcq.datamodel.userplayerlist
+import com.example.haowenyu.cloudqcq.view.Activity_song_play
 import com.example.haowenyu.cloudqcq.view.Activitylogin
 import com.example.haowenyu.cloudqcq.view.PlayListDetail
 import com.example.haowenyu.cloudqcq.view.PlayerlistActivity
@@ -59,6 +61,17 @@ class Presenter: Contract.Presenter {
                         }
                     } else {
                     login.loginSuccess(user)}
+            }
+        }
+    }
+
+    fun getSongUrl(id: String,ac:Activity_song_play){
+        val s:Call<Song> = Retro.retro.getSongUrl(id)//被坑了半天发现传的id有问题
+        launch {
+            val song =  s.execute().body()
+            launch {
+
+                ac.getUrl(song!!.data[0].url)
             }
         }
     }

@@ -34,4 +34,8 @@ public interface Contract {
         void onerror(String message);
     }
 
+    interface Song_play{
+        void getUrl(String id);
+        void onerror(String message);
+    }
 }
