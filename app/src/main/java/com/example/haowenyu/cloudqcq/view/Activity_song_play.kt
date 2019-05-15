@@ -59,7 +59,7 @@ class Activity_song_play: Activity(),Contract.Song_play{
 
         btn_pause.setOnClickListener{
             if (mediaPlayer.isPlaying){
-               mediaPlayer.pause()
+                mediaPlayer.pause()
             }else mediaPlayer.start()
         }
         next.setOnClickListener {

@@ -1,6 +1,7 @@
 package com.example.haowenyu.cloudqcq.view
 
 import android.app.Activity
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
@@ -22,6 +23,10 @@ class PlayListDetail:Activity(),Contract.Playlist_detail{
     private lateinit var itemManager: ItemManager
     private lateinit var itemAdapter: ItemAdapter
     lateinit var mdetail:playlist_detail
+    private var mediaPlayer = MediaPlayer()
+    fun getOnclickid(song_id:String){
+
+    }
 
     override fun getplaydetail(detail: playlist_detail?) {
 
@@ -31,7 +36,9 @@ class PlayListDetail:Activity(),Contract.Playlist_detail{
             detail.playlist.tracks[i].al.picUrl,
             detail.playlist.tracks[i].name,
             detail.playlist.tracks[i].ar[0].name,
-            detail.privileges[i].id
+            detail.privileges[i].id,
+            this
+
         ))
     }
     launch(kotlinx.coroutines.android.UI) {
