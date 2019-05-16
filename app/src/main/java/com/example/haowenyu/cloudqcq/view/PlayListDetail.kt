@@ -14,7 +14,9 @@ import com.example.haowenyu.cloudqcq.R
 import com.example.haowenyu.cloudqcq.datamodel.playlist_detail
 import com.example.haowenyu.cloudqcq.view.items.Song_detai
 import kotlinx.android.synthetic.main.activity_songlist.*
+
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 class PlayListDetail:Activity(),Contract.Playlist_detail{
     val presenter= Presenter()
@@ -23,11 +25,23 @@ class PlayListDetail:Activity(),Contract.Playlist_detail{
     private lateinit var itemManager: ItemManager
     private lateinit var itemAdapter: ItemAdapter
     lateinit var mdetail:playlist_detail
-    private var mediaPlayer = MediaPlayer()
+    private var player = MediaPlayer()
     fun getOnclickid(song_id:String){
-
+     presenter.getSongUrllist(song_id,this)
     }
 
+    fun getsongurl(url:String){
+        initplayer(url)
+    }
+
+    private fun initplayer(url:String?){
+        try {
+            player.setDataSource(url)
+            player.prepareAsync()
+        }catch (e: IOException){
+            e.printStackTrace()
+        }
+    }
     override fun getplaydetail(detail: playlist_detail?) {
 
     for (i in 0 until detail?.playlist?.tracks?.size!!){
@@ -68,6 +82,19 @@ class PlayListDetail:Activity(),Contract.Playlist_detail{
             adapter = itemAdapter
             layoutManager = LinearLayoutManager(this.context)
             song_detail_btn.setOnClickListener {
+
+            }
+
+            previous.setOnClickListener{
+
+            }
+
+            btn_pause.setOnClickListener{
+                if (player.isPlaying){
+                    player.pause()
+                }else player.start()
+            }
+            next.setOnClickListener {
 
             }
         }

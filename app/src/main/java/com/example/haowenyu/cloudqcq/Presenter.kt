@@ -70,8 +70,17 @@ class Presenter: Contract.Presenter {
         launch {
             val song =  s.execute().body()
             launch {
-
                 ac.getUrl(song!!.data[0].url)
+            }
+        }
+    }
+
+    fun getSongUrllist(id: String,ac:PlayListDetail){
+        val s:Call<Song> = Retro.retro.getSongUrl(id)//被坑了半天发现传的id有问题
+        launch {
+            val song =  s.execute().body()
+            launch {
+            ac.getsongurl(song!!.data[0].url)
             }
         }
     }
