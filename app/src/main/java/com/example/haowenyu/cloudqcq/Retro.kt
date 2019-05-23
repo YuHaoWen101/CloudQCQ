@@ -33,7 +33,7 @@ class  Retro{
 
     private var retrofit: Retrofit = Retrofit.Builder()
         .client(client)
-        .baseUrl("http://172.23.34.91:3000")
+        .baseUrl("http://172.23.224.42:3000")
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().serializeNulls().setLenient().create()))
         .build()

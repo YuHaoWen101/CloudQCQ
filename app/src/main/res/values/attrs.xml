@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GramophoneView">
+        <!--图片半径，不是整个唱片的半径，只是图片的半径-->
+        <attr name="picture_radius" format="dimension"/>
+        <!--图片资源id-->
+        <attr name="src" format="reference"/>
+        <!--唱片旋转速度，实际上在Java代码里面被当做唱片旋转时每次变化的角度-->
+        <attr name="disk_rotate_speed" format="float"/>
+    </declare-styleable>
+</resources>

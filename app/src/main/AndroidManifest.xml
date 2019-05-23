@@ -20,6 +20,7 @@
         <activity android:name=".view.PlayerlistActivity"/>
         <activity android:name=".view.PlayListDetail"/>
         <activity android:name=".view.Activity_song_play"/>
+        <activity android:name=".view.items.Activity_new_songplay"/>
     </application>
 
 </manifest>

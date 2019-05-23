@@ -132,13 +132,14 @@ class Song_detai(
         holder.Song_author.text = item.song_author
         Glide.with(holder.view).load(item.img).into(holder.Status)
         holder.view.setOnClickListener {
-            item.playListDetail.getOnclickid(item.song_id)
-            /*以后改
+            //item.playListDetail.getOnclickid(item.song_id)//al pirurl 是要传的图片地址
+
             val bundle = Bundle()
-            bundle.putString("song_id",item.song_id) //换播放界面
+            bundle.putString("song_id",item.song_id)
+            bundle.putString("pic_url",item.img) //换播放界面
             val intent = Intent(holder.view.context,Activity_song_play::class.java)
             intent.putExtras(bundle)
-            holder.view.context.startActivity(intent)*/
+            holder.view.context.startActivity(intent)
 
             //播放
         }

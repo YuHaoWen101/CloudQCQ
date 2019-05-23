@@ -10,7 +10,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="4"
-            android:orientation="horizontal">
+            android:gravity="center"
+            >
+        <com.example.haowenyu.cloudqcq.common.XCRoundImageView
+                android:id="@+id/XC"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+        />
           </LinearLayout>
 
     <LinearLayout
