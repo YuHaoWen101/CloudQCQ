@@ -13,8 +13,7 @@ import cn.edu.twt.retrox.recyclerviewdsl.Item
 import cn.edu.twt.retrox.recyclerviewdsl.ItemController
 import com.bumptech.glide.Glide
 import com.example.haowenyu.cloudqcq.R
-import com.example.haowenyu.cloudqcq.datamodel.playlist_detail
-import com.example.haowenyu.cloudqcq.view.Activity_song_play
+import com.example.haowenyu.cloudqcq.view.SongPlay
 import com.example.haowenyu.cloudqcq.view.PlayListDetail
 
 import kotlinx.android.synthetic.main.recycle_playerlist_common_download.view.*
@@ -30,7 +29,6 @@ class playerlists(val text: String?, val num: String?) : Item {
             val inflater = parent.context.layoutInflater
             val view = inflater.inflate(R.layout.recycle_playerlist_common_download, parent, false)
             return ViewHolder(
-
                 view,
                 view.base_download_item_icon,
                 view.base_download_item_title,
@@ -70,7 +68,7 @@ class playerlists(val text: String?, val num: String?) : Item {
 }
 
 class playlist_info(val text: String?, val count: String?, val image: String?, val id: String?) : Item {
-    override val controller: ItemController =Companion
+    override val controller: ItemController = Companion
 
 
     companion object : ItemController {
@@ -87,10 +85,8 @@ class playlist_info(val text: String?, val count: String?, val image: String?, v
                 holder.view.context.startActivity(intent)
             }
             holder.end.setOnClickListener {
-
                 //额外操作
             }
-
         }
 
         override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
@@ -103,7 +99,6 @@ class playlist_info(val text: String?, val count: String?, val image: String?, v
                 view.playlist_button
             )
         }
-
     }
 
     class ViewHolder(
@@ -126,23 +121,21 @@ class Song_detai(
 
     companion object : ItemController {
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: Item) {
-        holder as ViewHolder
-        item as Song_detai
-        holder.Song_name.text = item.song_name
-        holder.Song_author.text = item.song_author
-        Glide.with(holder.view).load(item.img).into(holder.Status)
-        holder.view.setOnClickListener {
-            //item.playListDetail.getOnclickid(item.song_id)//al pirurl 是要传的图片地址
+            holder as ViewHolder
+            item as Song_detai
+            holder.Song_name.text = item.song_name
+            holder.Song_author.text = item.song_author
+            Glide.with(holder.view).load(item.img).into(holder.Status)
+            holder.view.setOnClickListener {
+                //item.playListDetail.getOnclickid(item.song_id)//al pirurl 是要传的图片地址
 
-            val bundle = Bundle()
-            bundle.putString("song_id",item.song_id)
-            bundle.putString("pic_url",item.img) //换播放界面
-            val intent = Intent(holder.view.context,Activity_song_play::class.java)
-            intent.putExtras(bundle)
-            holder.view.context.startActivity(intent)
-
-            //播放
-        }
+                val bundle = Bundle()
+                bundle.putString("song_id", item.song_id)
+                bundle.putString("pic_url", item.img) //换播放界面
+                val intent = Intent(holder.view.context, SongPlay::class.java)
+                intent.putExtras(bundle)
+                holder.view.context.startActivity(intent) //播放
+            }
 
         }
 
@@ -150,11 +143,11 @@ class Song_detai(
             val inflater = parent.context.layoutInflater
             val view = inflater.inflate(R.layout.recycle_song_info, parent, false)
             return ViewHolder(
-            view,
-            view.song_status,
-            view.song_name,
-            view.song_author,
-            view.song_end
+                view,
+                view.song_status,
+                view.song_name,
+                view.song_author,
+                view.song_end
             )
         }
     }

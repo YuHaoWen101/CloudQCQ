@@ -34,10 +34,8 @@ class Activitylogin : Activity(), Contract.View {
     override fun loginSuccess(iuser: user?) {
 
     this.startActivity<PlayerlistActivity>{
-
         putExtra("iuser",iuser!!.bindings[0].id)
         putExtra("userid",iuser.bindings[0].id.toString())
-
     }
 }
 
@@ -82,7 +80,7 @@ class Activitylogin : Activity(), Contract.View {
 
     }
 
-    private inline fun <reified T : Activity> Activity.startActivity(initializer: Intent.() -> Unit) {
+    private inline fun <reified T : Activity> Activity.startActivity(initializer: Intent.() -> Unit) {//reified
         startActivity(
             Intent(this, T::class.java).apply(initializer)
         )

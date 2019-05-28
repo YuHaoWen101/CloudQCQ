@@ -2,13 +2,12 @@ package com.example.haowenyu.cloudqcq.common
 
 import android.media.MediaPlayer
 
-class myPlayer{
+class MyMusicPlayer{
     companion object {
         val player = Holder.INSTANCE
     }
     private object Holder{
-        val INSTANCE =myPlayer()
+        val INSTANCE =MyMusicPlayer()
     }
     var mediaPlayer = MediaPlayer()
-
 }

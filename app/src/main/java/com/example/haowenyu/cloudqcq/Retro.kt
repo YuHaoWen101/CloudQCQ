@@ -5,14 +5,12 @@ import com.example.haowenyu.cloudqcq.datamodel.playlist_detail
 import com.example.haowenyu.cloudqcq.datamodel.user
 import com.example.haowenyu.cloudqcq.datamodel.userplayerlist
 import com.google.gson.GsonBuilder
-import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 class  Retro{
@@ -23,7 +21,6 @@ class  Retro{
         val INSTANCE = Retro()
     }
     private var client = OkHttpClient.Builder()
-
         .addInterceptor(HttpLoggingInterceptor()
         .setLevel(HttpLoggingInterceptor.Level.BODY))
         .connectTimeout(8, TimeUnit.SECONDS)
@@ -33,7 +30,7 @@ class  Retro{
 
     private var retrofit: Retrofit = Retrofit.Builder()
         .client(client)
-        .baseUrl("http://172.23.224.42:3000")
+        .baseUrl("http://192.168.1.177:3000")
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().serializeNulls().setLenient().create()))
         .build()

@@ -5,22 +5,18 @@ import android.app.Activity
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
-import android.view.animation.Animation
-import android.view.animation.BounceInterpolator
 import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.haowenyu.cloudqcq.Contract
 import com.example.haowenyu.cloudqcq.Presenter
 import com.example.haowenyu.cloudqcq.R
 import kotlinx.android.synthetic.main.song_play.*
-import org.jetbrains.anko.sdk25.coroutines.onTouch
 import java.io.IOException
 
-class Activity_song_play: Activity(),Contract.Song_play{
+class SongPlay: Activity(),Contract.Song_play{
     lateinit private var mediaPlayer:MediaPlayer
-    var myPlayer = com.example.haowenyu.cloudqcq.common.myPlayer
+    var myPlayer = com.example.haowenyu.cloudqcq.common.MyMusicPlayer
     var Songurl:String? = null
     lateinit var animator:ObjectAnimator
     override fun getUrl(surl: String?){
@@ -40,11 +36,9 @@ class Activity_song_play: Activity(),Contract.Song_play{
         init()
         animator.apply {
             setInterpolator (LinearInterpolator())
-            repeatCount = 10000000
-
+            repeatCount = 10000000 //改
         }
     }
-
 
     private fun initplayer(url:String?){
         try {

@@ -54,7 +54,6 @@ class PlayListDetail:Activity(),Contract.Playlist_detail{
             if(player.isPlaying) {player.reset()}
             player.setDataSource(url)
             player.prepareAsync()
-
             /*player.setOnPreparedListener {
 
                 fun onPrepared(mp:MediaPlayer){
@@ -101,7 +100,7 @@ class PlayListDetail:Activity(),Contract.Playlist_detail{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_songlist)
         seekBar = findViewById(R.id.list_seekbar)
-        player = MediaPlayer()
+       // player = MediaPlayer()
         val b:Bundle? = intent.extras
         if (b?.getString("id") != null){
             id = b.getString("id")!!
